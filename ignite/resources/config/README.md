@@ -1,5 +1,6 @@
-<!-- 
-Copyright (c) 2017 YCSB contributors. All rights reserved.
+<!--
+Copyright (c) 2018 YCSB contributors.
+All rights reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you
 may not use this file except in compliance with the License. You
@@ -14,18 +15,4 @@ implied. See the License for the specific language governing
 permissions and limitations under the License. See accompanying
 LICENSE file.
 -->
-
-<configuration>
-
-  <appender name="STDERR" class="ch.qos.logback.core.ConsoleAppender">
-    <!-- encoders are assigned the type
-         ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
-    <encoder>
-      <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
-    </encoder>
-  </appender>
-
-  <root level="info">
-    <appender-ref ref="STDERR" />
-  </root>
-</configuration>
+Contains the template of the Ignite configuration used by IgniteClient and IgniteSqlClient.

@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2012 - 2015 YCSB contributors. All rights reserved.
+/*
+ * Copyright (c) 2014, Yahoo!, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you
  * may not use this file except in compliance with the License. You
@@ -16,7 +16,8 @@
  */
 
 /**
- * The YCSB binding for <a href="https://www.arangodb.com/">ArangoDB</a>.
+ * The YCSB binding for <a href="http://ignite.apache.org/">Ignite</a>.
+ * Naive implementation.
  */
-package com.yahoo.ycsb.db;
+package com.yahoo.ycsb.db.ignite;
 
