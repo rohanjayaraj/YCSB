@@ -25,6 +25,7 @@ import org.ojai.Document;
 import org.ojai.DocumentConstants;
 import org.ojai.DocumentStream;
 import org.ojai.Value;
+import org.ojai.json.Json;
 import org.ojai.store.Connection;
 import org.ojai.store.DocumentMutation;
 import org.ojai.store.DocumentStore;
@@ -46,11 +47,16 @@ public class MapRJSONDBClient extends com.yahoo.ycsb.DB {
   private Connection connection = null;
   private DocumentStore documentStore = null;
   private Driver driver = null;
+  private boolean clientbuffering = false;
 
   @Override
   public void init() {
     connection = DriverManager.getConnection("ojai:mapr:");
     driver = connection.getDriver();
+    if ("true"
+        .equals(getProperties().getProperty("clientbuffering", "false"))) {
+      this.clientbuffering = true;
+    }
   }
 
   @Override
@@ -146,7 +152,13 @@ public class MapRJSONDBClient extends com.yahoo.ycsb.DB {
    */
   private DocumentStore getTable(String tableName) {
     if (documentStore == null) {
-      documentStore = connection.getStore(tableName);
+       Document doc = Json.newDocument().set("ojai.mapr.documentstore.buffer-writes", 
+              true);
+      if(clientbuffering) {
+	documentStore = connection.getStore(tableName, doc);
+       } else {
+	documentStore = connection.getStore(tableName);
+       }
     }
     return documentStore;
   }
